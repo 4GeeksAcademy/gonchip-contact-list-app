@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, createElement } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/createContact.css";
@@ -25,7 +25,7 @@ export const CreateContact = () => {
     fetch("https://playground.4geeks.com/apis/fake/contact/agenda/gonchip")
       .then((response) => {
         if (!response.ok) {
-          console.error("No se pudieron cargar los contactos")
+          
           throw Error(response.statusText)
         }
         return response.json()
@@ -39,7 +39,7 @@ export const CreateContact = () => {
   };
 
   const saveContact = () => {
-    
+
     const response = actions.createContact(contact)
 
     if (response) {
@@ -49,6 +49,7 @@ export const CreateContact = () => {
       alert("Completa todos los campos.")
     }
   };
+
 
   return (
     <div className="container-div">

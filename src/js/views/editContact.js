@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/createContact.css";
 
   export const EditContact = () => {
-  const { id } = useParams(); // Obtén el ID del contacto de la URL
+  const { id } = useParams(); 
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 

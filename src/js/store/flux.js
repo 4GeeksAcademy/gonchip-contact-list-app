@@ -1,4 +1,4 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, getContacts, setStore }) => {
 	return {
 		store: {
 			contactList: [
@@ -17,6 +17,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store, contactList: [...store.contactList, { ...contact, "agenda_slug": "gonchip" }] });
 				return true
 			},
+
+			getContacts: () => {
+				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/gonchip')
+				.then(function(response) {
+				   if (!response.ok) {
+					console.error("No task on API")
+				   throw Error(response.statusText);
+				}
+				   return response.json();
+				})
+				 .then(function(responseAsJson) {
+					state.actions.contactsLoad(responseAsJson)
+					console.log(responseAsJson)
+				})
+				},
 
 			deleteContact: (elm) => {
 				const store = getStore();
