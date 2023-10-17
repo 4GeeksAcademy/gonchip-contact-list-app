@@ -21,14 +21,13 @@ const getState = ({ getStore, getContacts, setStore }) => {
 			getContacts: () => {
 				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/gonchip')
 				.then(function(response) {
-				   if (!response.ok) {
-					console.error("No task on API")
-				   throw Error(response.statusText);
-				}
+				  
 				   return response.json();
 				})
 				 .then(function(responseAsJson) {
-					state.actions.contactsLoad(responseAsJson)
+					setStore({
+						contactList:responseAsJson
+					})
 					console.log(responseAsJson)
 				})
 				},
@@ -42,23 +41,25 @@ const getState = ({ getStore, getContacts, setStore }) => {
 				setStore({ ...store, contactList: store.contactList.filter(contacts => contacts.id != elm.id) })
 			},
 
-			editContact: (currentContact, contactNewInfo) => {
+			editContact: ( id, data) => {
 				const store = getStore();
-				let searchContact = store.contactList.find(person => currentContact.id == person.id)
-				if (searchContact) {
-					contactNewInfo.full_name != "" ? searchContact.full_name = contactNewInfo.full_name : ""
-					contactNewInfo.email != "" ? searchContact.email = contactNewInfo.email : ""
-					contactNewInfo.phone != "" ? searchContact.phone = contactNewInfo.phone : ""
-					contactNewInfo.address != "" ? searchContact.address = contactNewInfo.address : ""
-					setStore("")
+				console.log(data, id)
+				// let searchContact = store.contactList.find(person => currentContact.id == person.id)
+				// if (searchContact) {
+				// 	contactNewInfo.full_name != "" ? searchContact.full_name = contactNewInfo.full_name : ""
+				// 	contactNewInfo.email != "" ? searchContact.email = contactNewInfo.email : ""
+				// 	contactNewInfo.phone != "" ? searchContact.phone = contactNewInfo.phone : ""
+				// 	contactNewInfo.address != "" ? searchContact.address = contactNewInfo.address : ""
+				// 	setStore("")
 
-					fetch('https://playground.4geeks.com/apis/fake/contact/' + currentContact.id, {
+					fetch('https://playground.4geeks.com/apis/fake/contact/' + id, {
 						method: "PUT",
-						body: JSON.stringify(searchContact),
+						body: JSON.stringify(data),
 						headers: { 'Content-Type': 'application/json' }
 					})
+					// .then ((response) => )
 				}
-				return true
+				// return true
 			},
 
 			contactsLoad: (json) => {
@@ -67,6 +68,6 @@ const getState = ({ getStore, getContacts, setStore }) => {
 			},
 		}
 	};
-};
+// };
 
 export default getState;

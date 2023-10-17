@@ -21,22 +21,22 @@ export const CreateContact = () => {
     setContact({ ...contact, [name]: value });
   };
 
-  const loadContactData = () => {
-    fetch("https://playground.4geeks.com/apis/fake/contact/agenda/gonchip")
-      .then((response) => {
-        if (!response.ok) {
+  // const loadContactData = () => {
+  //   fetch("https://playground.4geeks.com/apis/fake/contact/agenda/gonchip")
+  //     .then((response) => {
+  //       if (!response.ok) {
           
-          throw Error(response.statusText)
-        }
-        return response.json()
-      })
-      .then((responseAsJson) => {
-        actions.contactsLoad(responseAsJson)
-      })
-      .catch((error) => {
-        console.error("Error al cargar los contactos:", error)
-      });
-  };
+  //         throw Error(response.statusText)
+  //       }
+  //       return response.json()
+  //     })
+  //     .then((responseAsJson) => {
+  //       actions.contactsLoad(responseAsJson)
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error al cargar los contactos:", error)
+  //     });
+  // };
 
   const saveContact = () => {
 
@@ -44,7 +44,6 @@ export const CreateContact = () => {
 
     if (response) {
        navigate("/")
-       window.location.reload()
     } else {
       alert("Completa todos los campos.")
     }

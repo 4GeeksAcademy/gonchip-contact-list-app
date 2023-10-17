@@ -35,9 +35,9 @@ import "../../styles/createContact.css";
   };
 
   
-  useEffect(() => {
-    loadContactData()
-  }, []);
+  // useEffect(() => {
+  //   loadContactData()
+  // }, []);
  
   
   const handleInputChange = (e) => {
@@ -45,49 +45,49 @@ import "../../styles/createContact.css";
     setContact({ ...contact, [name]: value });
   };
 
-  const saveChanges = () => {
-    if (id) {
+  // const saveChanges = () => {
+  //   if (id) {
       
-      const updatedContactData = {
-        full_name: contact.full_name,
-        email: contact.email,
-        phone: contact.phone,
-        address: contact.address,
-        agenda_slug: "gonchip", 
-      };
+  //     const updatedContactData = {
+  //       full_name: contact.full_name,
+  //       email: contact.email,
+  //       phone: contact.phone,
+  //       address: contact.address,
+  //       agenda_slug: "gonchip", 
+  //     };
 
       
-      fetch(`https://playground.4geeks.com/apis/fake/contact/${id}`, {
-        method: "PUT",
-        body: JSON.stringify(updatedContactData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            console.error("Error al actualizar el contacto");
-            throw Error(response.statusText);
-          }
-          return response.json();
-        })
-        .then((updatedContact) => {
+  //     fetch(`https://playground.4geeks.com/apis/fake/contact/${id}`, {
+  //       method: "PUT",
+  //       body: JSON.stringify(updatedContactData),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           console.error("Error al actualizar el contacto");
+  //           throw Error(response.statusText);
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((updatedContact) => {
           
-          const updatedContactList = store.contactList.map((c) =>
-            c.id === id ? updatedContact : c
-          );
+  //         const updatedContactList = store.contactList.map((c) =>
+  //           c.id === id ? updatedContact : c
+  //         );
 
-          actions.contactsLoad(updatedContactList); 
-          navigate("/");
-        })
-        .catch((error) => {
-          console.error("Error en la solicitud de edición:", error);
-          navigate("/");
-        });
-    } else {
+  //         actions.contactsLoad(updatedContactList); 
+  //         navigate("/");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error en la solicitud de edición:", error);
+  //         navigate("/");
+  //       });
+  //   } else {
       
-    }
-  };
+  //   }
+  // };
 
   return (
     <div className="container-div">
@@ -133,7 +133,7 @@ import "../../styles/createContact.css";
         />
       </div>
 
-      <button onClick={saveChanges}>Save Changes</button>
+      <button onClick={() => actions.editContact(id, contact)}>Save Changes</button>
 
       <Link to="/">Get Back to Contacts</Link>
     </div>

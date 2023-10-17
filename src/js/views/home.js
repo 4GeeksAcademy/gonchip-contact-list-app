@@ -17,26 +17,26 @@ export const Home = props => {
 		address: "",
 	});
 
-	const loadContactData = () => {
-		fetch("https://playground.4geeks.com/apis/fake/contact/agenda/gonchip")
-			.then((response) => {
-				if (!response.ok) {
-					console.error("No se pudieron cargar los contactos")
-					throw Error(response.statusText)
-				}
-				return response.json()
-			})
-			.then((responseAsJson) => {
-				actions.contactsLoad(responseAsJson)
-			})
-			.catch((error) => {
-				console.error("Error al cargar los contactos:", error)
-			});
-	};
+	// const loadContactData = () => {
+	// 	fetch("https://playground.4geeks.com/apis/fake/contact/agenda/gonchip")
+	// 		.then((response) => {
+	// 			if (!response.ok) {
+	// 				console.error("No se pudieron cargar los contactos")
+	// 				throw Error(response.statusText)
+	// 			}
+	// 			return response.json()
+	// 		})
+	// 		.then((responseAsJson) => {
+	// 			actions.contactsLoad(responseAsJson)
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error("Error al cargar los contactos:", error)
+	// 		});
+	// };
 
-	useEffect(() => {
-		loadContactData()
-	}, []);
+	// useEffect(() => {
+	// 	loadContactData()
+	// }, []);
 
 
 	return (
