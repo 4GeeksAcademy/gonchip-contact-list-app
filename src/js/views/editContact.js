@@ -14,7 +14,13 @@ import "../../styles/createContact.css";
     email: "",
     phone: "",
     address: "",
+    agenda_slug:"gonchip",
   });
+
+  const saveContact =  async () => {
+    let result = await actions.editContact( id, contact)
+    if (result) navigate("/") 
+  }
 
   
   const loadContactData = () => {
@@ -133,7 +139,7 @@ import "../../styles/createContact.css";
         />
       </div>
 
-      <button onClick={() => actions.editContact(id, contact)}>Save Changes</button>
+      <button onClick={() => saveContact() }>Save Changes</button>
 
       <Link to="/">Get Back to Contacts</Link>
     </div>

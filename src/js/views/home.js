@@ -53,7 +53,7 @@ export const Home = props => {
 					pencil={() => actions.editContact(contact)}
 				>
 
-					<Link to={contact.id ? `/editContact/${contact.id}` : ""}>
+					<Link to={`/editContact/${contact.id}`}>
 						<FontAwesomeIcon icon={faPencil} />
 					</Link>
 				</ContactCard>

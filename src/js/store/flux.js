@@ -1,4 +1,4 @@
-const getState = ({ getStore, getContacts, setStore }) => {
+const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contactList: [
@@ -57,9 +57,10 @@ const getState = ({ getStore, getContacts, setStore }) => {
 						body: JSON.stringify(data),
 						headers: { 'Content-Type': 'application/json' }
 					})
-					// .then ((response) => )
+					 .then ((response) => getActions().getContacts())
+					 return true
 				}
-				// return true
+				
 			},
 
 			contactsLoad: (json) => {
